@@ -7,7 +7,7 @@
 #include "path.h"
 
 //data
-static bool run = false, debug = false, gui = false, clean = false;
+static bool run = false, debug = false, clean = false;
 static std::vector<std::filesystem::path> inc_paths, src_paths, dll_paths;
 static std::string CXX, CXXFLAGS, LIBS, ELIB, EDLL, DEFS, INCS, LNKS, mode;
 
@@ -33,7 +33,6 @@ void setup(int argc, char** argv)
 			mode = "release";
 		}
 		run = run || strcmp(argv[i], "run") == 0;
-		gui = gui || strcmp(argv[i], "gui") == 0;
 		debug = debug || strcmp(argv[i], "debug") == 0;
 		clean = clean || strcmp(argv[i], "clean") == 0;
 	}
@@ -240,13 +239,6 @@ void build_run(void)
 	std::filesystem::path out = "dist/" + mode + "/ben.exe ";
 	system(replace(out, "/", "\\").string().c_str());
 }
-void build_gui(void)
-{
-	if(!gui) return;
-	std::filesystem::current_path("../gui");
-	std::filesystem::path out = "dist/" + mode + "/gui.exe ";
-	system(replace(out, "/", "\\").string().c_str());
-}
 void build_debug(void)
 {
 	if(!debug) return;
@@ -279,7 +271,6 @@ int main(int argc, char** argv)
 		build_dll();
 		build_exe();
 		build_run();
-		build_gui();
 		build_debug();
 	}
 	else
