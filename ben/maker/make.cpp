@@ -51,9 +51,9 @@ void setup(int argc, char** argv)
 void setup_strs(void)
 {
 	CXX = "cl ";
+	ELIB = "../libs/";
+	EDLL = "../dlls/";
 	LNKS = "/IGNORE:4099 ";
-	ELIB = "../ext/lib/x64/";
-	EDLL = "../ext/dll/x64/";
 	DEFS = "/D \"NOMINMAX\" /D \"_USE_MATH_DEFINES\" ";
 	INCS = "/I inc /I build /I ../mat/inc /I ../fea/inc /I ../ext/inc ";
 	CXXFLAGS = "/nologo /std:c++20 /EHsc /c /openmp /diagnostics:caret " + DEFS + INCS;
@@ -80,8 +80,6 @@ void setup_libs(void)
 	LIBS += ELIB + "gmsh.lib ";
 	LIBS += ELIB + "libblas.lib ";
 	LIBS += ELIB + "liblapack.lib ";
-	LIBS += "../fea/dist/" + mode + "/libfea.lib ";
-	LIBS += "../mat/dist/" + mode + "/libmat.lib ";
 	mode.compare("debug") == 0 ? setup_libs_debug() : setup_libs_release();
 }
 void setup_dlls(void)
@@ -97,6 +95,8 @@ void setup_dlls(void)
 void setup_libs_debug(void)
 {
 	LIBS += ELIB + "metisd.lib ";
+	LIBS += ELIB + "libmatd.lib ";
+	LIBS += ELIB + "libfead.lib ";
 	LIBS += ELIB + "libamdd.lib ";
 	LIBS += ELIB + "libcamdd.lib ";
 	LIBS += ELIB + "libcolamdd.lib ";
@@ -109,6 +109,8 @@ void setup_libs_debug(void)
 void setup_libs_release(void)
 {
 	LIBS += ELIB + "metis.lib ";
+	LIBS += ELIB + "libmat.lib ";
+	LIBS += ELIB + "libfea.lib ";
 	LIBS += ELIB + "libamd.lib ";
 	LIBS += ELIB + "libcamd.lib ";
 	LIBS += ELIB + "libcolamd.lib ";
