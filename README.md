@@ -24,7 +24,7 @@ To build the code, open a command prompt in the root folder and type the followi
 
 ### Linux
 
-Todo
+To be done in the future
 
 ## Debug
 
