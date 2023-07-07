@@ -1,6 +1,6 @@
 # Galileo-API
 
-Repository to share user code of Galileo.
+Repository to share Galileo's user code.
 
 Website: [www.galileo-fea.com](https://www.galileo-fea.com)
 
