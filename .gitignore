@@ -1,0 +1,11 @@
+*
+!*/
+!*.h
+!*.md
+!*.rc
+!*.bat
+!*.cpp
+!*.dat
+!*.ico
+!*.json
+!.gitignore

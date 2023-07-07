@@ -1,0 +1,454 @@
+//std
+#include <cmath>
+#include <cstring>
+#include <filesystem>
+
+//mat
+#include "misc/util.h"
+#include "linear/vec3.h"
+#include "linear/dense.h"
+
+//fea
+#include "Model/Model.h"
+
+#include "Mesh/Mesh.h"
+#include "Mesh/Nodes/Dof.h"
+#include "Mesh/Nodes/Node.h"
+#include "Mesh/Cells/Types.h"
+#include "Mesh/Joints/Types.h"
+#include "Mesh/Joints/Hinge.h"
+#include "Mesh/Sections/Box.h"
+#include "Mesh/Sections/Types.h"
+#include "Mesh/Elements/Types.h"
+#include "Mesh/Cells/Line/Line.h"
+#include "Mesh/Materials/Types.h"
+#include "Mesh/Materials/Mechanic/Steel.h"
+#include "Mesh/Elements/Mechanic/Mechanic.h"
+#include "Mesh/Elements/Mechanic/Frame/Beam3.h"
+
+#include "Boundary/Boundary.h"
+#include "Boundary/Loads/Load_Case.h"
+
+#include "Analysis/Analysis.h"
+#include "Analysis/Solvers/Types.h"
+#include "Analysis/Solvers/Modal.h"
+#include "Analysis/Strategies/Types.h"
+#include "Analysis/Solvers/Static_Nonlinear.h"
+
+//ben
+#include "benchmarks/mechanic/deployable.h"
+
+//controls
+static int hinge = 1;
+const static bool open = true;
+const static bool standart = false;
+const static bool material = false;
+const static bool geometry_L = false;
+const static bool geometry_h = true;
+
+//geometry
+static double L = 1.00e+00;
+static double h = 0.50e+00;
+const static double H = 0.40e+00;
+
+const static double r = 5.00e-02;
+const static double s = 1.40e-02;
+
+//joint
+const static char* names[] = {"soft", "hard", "rigid"};
+const static double kt[] = {7.83e+02, 1.13e+03, 1.00e+05};
+const static double kr[] = {1.98e+07, 4.80e+07, 1.00e+10};
+
+//material
+const static double ra = 2.70e+03;
+const static double rp = 9.40e+02;
+const static double Ea = 7.00e+10;
+const static double Ep = 8.00e+08;
+
+//section
+const static double hs = 4.00e-02;
+const static double ws = 1.00e-02;
+const static double ts = 1.00e-03;
+
+//analysis
+const static unsigned nd = 4;
+const static unsigned nr = 4;
+
+//data
+static double p0[3], p1[3];
+static double D, v, l, e, x, d, b, z, c, a;
+static double pa[nd][2][3], pb[nd][2][3], po[nd][2][3];
+static double pc[nd][2][3], pd[nd][7][3], pe[nd][7][3];
+
+//misc
+static void setup(void)
+{
+	//primary
+	D = 2 * L * sin(M_PI / nd);
+	v = r * (4 * sin(M_PI / nd) - 2);
+	l = sqrt(h * h + pow(L - 2 * r, 2));
+	e = sqrt(H * H + pow(D - 2 * r, 2)) / 2;
+	x = (pow(D - 2 * r, 2) - v * v) / (l * sqrt(4 * e * e - v * v) - h * H) / 2;
+	//derived
+	d = x * l;
+	b = (1 - x) * l;
+	z = h - (1 - x) / x * H;
+	c = sqrt(4 * e * e - v * v) - d;
+	a = (1 - x) / x * c;
+}
+
+//create
+static void set_points(void)
+{
+	double t;
+	p0[0] = p0[1] = 0;
+	p1[0] = p1[1] = 0;
+	p0[2] = open ? z : d - a;
+	p1[2] = open ? h : d + b;
+	for(unsigned i = 0; i < nd; i++)
+	{
+		t = (2 * i + 1) * M_PI / nd;
+		pa[i][1][0] = r * cos(t) + s * sin(t);
+		pa[i][1][1] = r * sin(t) - s * cos(t);
+		pb[i][1][0] = r * cos(t) - s * sin(t);
+		pb[i][1][1] = r * sin(t) + s * cos(t);
+		pa[i][0][0] = pb[i][0][0] = r * cos(t);
+		pa[i][0][1] = pb[i][0][1] = r * sin(t);
+		pa[i][0][2] = pa[i][1][2] = open ? z : d - a;
+		pb[i][0][2] = pb[i][1][2] = open ? h : d + b;
+		po[i][0][2] = po[i][1][2] = open ? x * h : d;
+		pc[i][0][2] = pc[i][1][2] = open ? H / 2 : (d + c) / 2;
+		pd[i][4][0] = (open ? L - r : r) * cos(t) + s * sin(t);
+		pd[i][4][1] = (open ? L - r : r) * sin(t) - s * cos(t);
+		pe[i][4][0] = (open ? L - r : r) * cos(t) - s * sin(t);
+		pe[i][4][1] = (open ? L - r : r) * sin(t) + s * cos(t);
+		pd[i][0][0] = pe[i][0][0] = (open ? L : 2 * r) * cos(t);
+		pd[i][0][1] = pe[i][0][1] = (open ? L : 2 * r) * sin(t);
+		pd[i][1][0] = pe[i][1][0] = (open ? L - r : r) * cos(t);
+		pd[i][1][1] = pe[i][1][1] = (open ? L - r : r) * sin(t);
+		po[i][0][0] = (open ? r + (1 - x) * (L - 2 * r) : r) * cos(t) + s * sin(t);
+		po[i][0][1] = (open ? r + (1 - x) * (L - 2 * r) : r) * sin(t) - s * cos(t);
+		po[i][1][0] = (open ? r + (1 - x) * (L - 2 * r) : r) * cos(t) - s * sin(t);
+		po[i][1][1] = (open ? r + (1 - x) * (L - 2 * r) : r) * sin(t) + s * cos(t);
+		pc[i][0][0] = ((open ? L : 2 * r) * cos(M_PI / nd) - s) * cos(t + M_PI / nd);
+		pc[i][0][1] = ((open ? L : 2 * r) * cos(M_PI / nd) - s) * sin(t + M_PI / nd);
+		pc[i][1][0] = ((open ? L : 2 * r) * cos(M_PI / nd) + s) * cos(t + M_PI / nd);
+		pc[i][1][1] = ((open ? L : 2 * r) * cos(M_PI / nd) + s) * sin(t + M_PI / nd);
+		pd[i][2][0] = pe[i][2][0] = (open ? L : 2 * r) * cos(t) + r * sin(t - M_PI / nd);
+		pd[i][2][1] = pe[i][2][1] = (open ? L : 2 * r) * sin(t) - r * cos(t - M_PI / nd);
+		pd[i][3][0] = pe[i][3][0] = (open ? L : 2 * r) * cos(t) - r * sin(t + M_PI / nd);
+		pd[i][3][1] = pe[i][3][1] = (open ? L : 2 * r) * sin(t) + r * cos(t + M_PI / nd);
+		pd[i][5][0] = (open ? L : 2 * r) * cos(t) + r * sin(t - M_PI / nd) + s * cos(t - M_PI / nd);
+		pd[i][5][1] = (open ? L : 2 * r) * sin(t) - r * cos(t - M_PI / nd) + s * sin(t - M_PI / nd);
+		pd[i][6][0] = (open ? L : 2 * r) * cos(t) - r * sin(t + M_PI / nd) - s * cos(t + M_PI / nd);
+		pd[i][6][1] = (open ? L : 2 * r) * sin(t) + r * cos(t + M_PI / nd) - s * sin(t + M_PI / nd);
+		pe[i][5][0] = (open ? L : 2 * r) * cos(t) + r * sin(t - M_PI / nd) - s * cos(t - M_PI / nd);
+		pe[i][5][1] = (open ? L : 2 * r) * sin(t) - r * cos(t - M_PI / nd) - s * sin(t - M_PI / nd);
+		pe[i][6][0] = (open ? L : 2 * r) * cos(t) - r * sin(t + M_PI / nd) + s * cos(t + M_PI / nd);
+		pe[i][6][1] = (open ? L : 2 * r) * sin(t) + r * cos(t + M_PI / nd) + s * sin(t + M_PI / nd);
+		pe[i][0][2] = pe[i][1][2] = pe[i][2][2] = pe[i][3][2] = pe[i][4][2] = pe[i][5][2] = pe[i][6][2] = 0;
+		pd[i][0][2] = pd[i][1][2] = pd[i][2][2] = pd[i][3][2] = pd[i][4][2] = pd[i][5][2] = pd[i][6][2] = open ? H : d + c;
+	}
+}
+static void check_points(void)
+{
+	//check
+	for(unsigned i = 0; i < nd; i++)
+	{
+		printf("check %d: ", i);
+		const unsigned j = i + 1 != nd ? i + 1 : 0;
+		printf("%d ", fabs(mat::norm(pa[i][0], p0, 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pb[i][0], p1, 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pa[i][1], po[i][0], 3) - a) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pb[i][1], po[i][1], 3) - b) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][4], po[i][0], 3) - c) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][4], po[i][1], 3) - d) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][0], pd[i][1], 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][0], pd[i][2], 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][0], pd[i][3], 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][0], pe[i][1], 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][0], pe[i][2], 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][0], pe[i][3], 3) - r) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pa[i][0], pa[i][1], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pb[i][0], pb[i][1], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][1], pd[i][4], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][2], pd[i][5], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][3], pd[i][6], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][1], pe[i][4], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][2], pe[i][5], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][3], pe[i][6], 3) - s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[i][6], pc[i][0], 3) - e) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[i][6], pc[i][1], 3) - e) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pd[j][5], pc[i][1], 3) - e) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pe[j][5], pc[i][0], 3) - e) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(po[i][0], po[i][1], 3) - 2 * s) < 1e-5 * L);
+		printf("%d ", fabs(mat::norm(pc[i][0], pc[i][1], 3) - 2 * s) < 1e-5 * L);
+		printf("\n");
+	}
+}
+static void read_element(unsigned i, double* r)
+{
+	//path
+	char path[800];
+	sprintf(path, "/home/murillo/galileo/models/benchmarks/deployable/static/nonlinear/slut model/Elements/E%04d.txt", i);
+	//read
+	double v;
+	FILE* file = fopen(path, "r");
+	memset(r, 0, 6 * sizeof(double));
+	while(!feof(file))
+	{
+		for(unsigned i = 0; i < 6; i++)
+		{
+			fscanf(file, "%lf", &v);
+			r[i] = fmax(r[i], fabs(v));
+		}
+	}
+	//close
+	fclose(file);
+}
+
+static void save_frequencies(fea::models::Model* model, FILE* file)
+{
+	if(file)
+	{
+		const double* e = model->analysis()->solver()->eigen_values();
+		for(unsigned i = 0; i < 3; i++)
+		{
+			fprintf(file, "%.6e ", sqrt(e[i]) / 2 / M_PI);
+		}
+		fprintf(file, "\n");
+	}
+}
+
+static void create_nodes(fea::models::Model* model)
+{
+	model->mesh()->add_node(p0);
+	model->mesh()->add_node(p1);
+	for(unsigned i = 0; i < nd; i++)
+	{
+		model->mesh()->add_node(pa[i][0]);
+		model->mesh()->add_node(pa[i][1]);
+		model->mesh()->add_node(pb[i][0]);
+		model->mesh()->add_node(pb[i][1]);
+		model->mesh()->add_node(po[i][0]);
+		model->mesh()->add_node(po[i][1]);
+		model->mesh()->add_node(pc[i][0]);
+		model->mesh()->add_node(pc[i][1]);
+		model->mesh()->add_node(pd[i][0]);
+		model->mesh()->add_node(pd[i][1]);
+		model->mesh()->add_node(pd[i][2]);
+		model->mesh()->add_node(pd[i][3]);
+		model->mesh()->add_node(pd[i][4]);
+		model->mesh()->add_node(pd[i][5]);
+		model->mesh()->add_node(pd[i][6]);
+		model->mesh()->add_node(pe[i][0]);
+		model->mesh()->add_node(pe[i][1]);
+		model->mesh()->add_node(pe[i][2]);
+		model->mesh()->add_node(pe[i][3]);
+		model->mesh()->add_node(pe[i][4]);
+		model->mesh()->add_node(pe[i][5]);
+		model->mesh()->add_node(pe[i][6]);
+	}
+}
+static void create_cells(fea::models::Model* model)
+{
+	model->mesh()->add_cell(fea::mesh::cells::type::beam);
+}
+static void create_joints(fea::models::Model* model)
+{
+	for(unsigned i = 0; i < nd; i++)
+	{
+		const double t = (2 * i + 1) * M_PI / nd;
+		const double s1[] = {+cos(t), +sin(t), 0};
+		const double s2[] = {-sin(t), +cos(t), 0};
+		const double u1[] = {+cos(t - M_PI / nd), +sin(t - M_PI / nd), 0};
+		const double u2[] = {-sin(t - M_PI / nd), +cos(t - M_PI / nd), 0};
+		const double e1[] = {+cos(t + M_PI / nd), +sin(t + M_PI / nd), 0};
+		const double e2[] = {-sin(t + M_PI / nd), +cos(t + M_PI / nd), 0};
+		const double* ha[] = {s2, s2, s2, e1, s2, u1, e1, s2, u1, e1};
+		const double* ho[] = {s1, s1, s1, e2, s1, u2, e2, s1, u2, e2};
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i +  2, 22 * i +  3});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i +  4, 22 * i +  5});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i +  6, 22 * i +  7});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i +  8, 22 * i +  9});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i + 11, 22 * i + 14});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i + 12, 22 * i + 15});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i + 13, 22 * i + 16});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i + 18, 22 * i + 21});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i + 19, 22 * i + 22});
+		model->mesh()->add_joint(fea::mesh::joints::type::hinge, {22 * i + 20, 22 * i + 23});
+		for(unsigned j = 0; j < 10; j++)
+		{
+			((fea::mesh::joints::Hinge*) model->mesh()->joint(10 * i + j))->axis(ha[j]);
+			((fea::mesh::joints::Hinge*) model->mesh()->joint(10 * i + j))->orientation(ho[j]);
+			((fea::mesh::joints::Hinge*) model->mesh()->joint(10 * i + j))->stiffness(0, 0, kt[standart ? hinge : 2]);
+			((fea::mesh::joints::Hinge*) model->mesh()->joint(10 * i + j))->stiffness(0, 1, kt[standart ? hinge : 2]);
+			((fea::mesh::joints::Hinge*) model->mesh()->joint(10 * i + j))->stiffness(1, 0, kr[standart ? hinge : 2]);
+			((fea::mesh::joints::Hinge*) model->mesh()->joint(10 * i + j))->stiffness(1, 1, kr[standart ? hinge : 2]);
+		}
+	}
+}
+static void create_sections(fea::models::Model* model)
+{
+	model->mesh()->add_section(fea::mesh::sections::type::box);
+	((fea::mesh::sections::Box*) model->mesh()->section(0))->width(ws);
+	((fea::mesh::sections::Box*) model->mesh()->section(0))->height(hs);
+	((fea::mesh::sections::Box*) model->mesh()->section(0))->thickness(ts);
+}
+static void create_elements(fea::models::Model* model)
+{
+	srand(time(nullptr));
+	for(unsigned i = 0; i < nd; i++)
+	{
+		const double q = 1.00e-2;
+		const double h1 = 1.00e-3;
+		const double h2 = 3.00e-3;
+		const unsigned mat_outer = 0;
+		const unsigned mat_inner = material;
+		const double t = (2 * i + 1) * M_PI / nd;
+		const double s2[] = {-sin(t), +cos(t), 0};
+		const double u1[] = {+cos(t - M_PI / nd), +sin(t - M_PI / nd), 0};
+		const double e1[] = {+cos(t + M_PI / nd), +sin(t + M_PI / nd), 0};
+		const double* bo[] = {s2, s2, s2, s2, s2, s2, e1, e1, s2, u1, e1, s2, u1, e1, e1, e1};
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  2, 0}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  4, 1}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  3, 22 * i +  6}, mat_inner);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  5, 22 * i +  7}, mat_inner);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  6, 22 * i + 14}, mat_inner);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  7, 22 * i + 21}, mat_inner);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  8, 22 * i + 16}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  9, 22 * i + 23}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i + 10, 22 * i + 11}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i + 10, 22 * i + 12}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i + 10, 22 * i + 13}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i + 17, 22 * i + 18}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i + 17, 22 * i + 19}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i + 17, 22 * i + 20}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  8, 22 * (i + 1 != nd ? i + 1 : 0) + 22}, mat_outer);
+		model->mesh()->add_element(fea::mesh::elements::type::beam3C, {22 * i +  9, 22 * (i + 1 != nd ? i + 1 : 0) + 15}, mat_outer);
+		for(unsigned j = 0; j < 16; j++)
+		{
+			((fea::mesh::elements::Beam*) model->mesh()->element(16 * i + j))->orientation(bo[j]);
+		}
+	}
+}
+static void refine_elements(fea::models::Model* model)
+{
+	for(unsigned i = 0; i < nd; i++)
+	{
+		fea::mesh::cells::Line::refine(16 * i +  2, nr);
+		fea::mesh::cells::Line::refine(16 * i +  3, nr);
+		fea::mesh::cells::Line::refine(16 * i +  4, nr);
+		fea::mesh::cells::Line::refine(16 * i +  5, nr);
+		fea::mesh::cells::Line::refine(16 * i +  6, nr);
+		fea::mesh::cells::Line::refine(16 * i +  7, nr);
+		fea::mesh::cells::Line::refine(16 * i + 14, nr);
+		fea::mesh::cells::Line::refine(16 * i + 15, nr);
+	}
+}
+static void create_materials(fea::models::Model* model)
+{
+	model->mesh()->add_material(fea::mesh::materials::type::steel);
+	model->mesh()->add_material(fea::mesh::materials::type::steel);
+	((fea::mesh::materials::Steel*) model->mesh()->material(0))->specific_mass(ra);
+	((fea::mesh::materials::Steel*) model->mesh()->material(1))->specific_mass(rp);
+	((fea::mesh::materials::Steel*) model->mesh()->material(0))->elastic_modulus(Ea);
+	((fea::mesh::materials::Steel*) model->mesh()->material(1))->elastic_modulus(Ep);
+}
+
+static void create_supports(fea::models::Model* model)
+{
+	model->boundary()->add_support(0, fea::mesh::nodes::dof::rotation_1);
+	model->boundary()->add_support(0, fea::mesh::nodes::dof::rotation_2);
+	model->boundary()->add_support(0, fea::mesh::nodes::dof::rotation_3);
+	model->boundary()->add_support(0, fea::mesh::nodes::dof::translation_1);
+	model->boundary()->add_support(0, fea::mesh::nodes::dof::translation_2);
+	model->boundary()->add_support(0, fea::mesh::nodes::dof::translation_3);
+}
+
+static void create_solver(fea::models::Model* model)
+{
+	fea::mesh::elements::Mechanic::geometric(true);
+	model->analysis()->solver(fea::analysis::solvers::type::modal);
+	dynamic_cast<fea::analysis::solvers::Modal*>(model->analysis()->solver())->scale(1.00);
+	dynamic_cast<fea::analysis::solvers::Modal*>(model->analysis()->solver())->spectre_min(0);
+	dynamic_cast<fea::analysis::solvers::Modal*>(model->analysis()->solver())->spectre_max(2);
+	dynamic_cast<fea::analysis::solvers::Modal*>(model->analysis()->solver())->spectre(fea::analysis::solvers::spectre::partial);
+	dynamic_cast<fea::analysis::solvers::Modal*>(model->analysis()->solver())->watch_dof(1, fea::mesh::nodes::dof::translation_3);
+	model->analysis()->solve();
+}
+
+static void create_model(const char* path, FILE* file = nullptr)
+{
+	//model
+	fea::models::Model model(path, "benchmarks/deployable/modal");
+
+	//mesh
+	setup();
+	set_points();
+	create_nodes(&model);
+	create_cells(&model);
+	create_joints(&model);
+	create_sections(&model);
+	create_elements(&model);
+	refine_elements(&model);
+	create_materials(&model);
+
+	//boundary
+	create_supports(&model);
+
+	//analysis
+	create_solver(&model);
+
+	//save
+	model.save();
+
+	//frequencies
+	save_frequencies(&model, file);
+}
+
+//model
+void tests::deployable::modal::slut_model(void)
+{
+	//data
+	char path[800];
+	//controls
+	if(standart)
+	{
+		sprintf(path, "slut model/default/%s", names[hinge]);
+		create_model(path);
+	}
+	else if(material)
+	{
+		sprintf(path, "slut model/material");
+		create_model(path);
+	}
+	else if(geometry_L)
+	{
+		const double L0 = L;
+		const unsigned n = 200;
+		FILE* file = fopen("data.txt", "w");
+		for(unsigned i = 0; i <= n; i++)
+		{
+			L = L0 / 2 + i * L0 / n;
+			fprintf(file, "%.6e ", L);
+			sprintf(path, "slut model/geometry/L/%.3f", L);
+			create_model(path, file);
+		}
+		fclose(file);
+	}
+	else if(geometry_h)
+	{
+		const double h0 = h;
+		const unsigned n = 200;
+		FILE* file = fopen("data.txt", "w");
+		for(unsigned i = 0; i <= n; i++)
+		{
+			h = h0 / 2 + i * h0 / n;
+			fprintf(file, "%.6e ", h);
+			sprintf(path, "slut model/geometry/h/%.3f", h);
+			create_model(path, file);
+		}
+		fclose(file);
+	}
+}
