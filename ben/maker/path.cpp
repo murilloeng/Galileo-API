@@ -66,7 +66,7 @@ std::filesystem::path rsc_to_obj(std::filesystem::path path, std::string mode)
 }
 std::filesystem::path ext_to_dll(std::filesystem::path path, std::string mode)
 {
-	return replace(path, "../ext/dll/x64/", "dist/" + mode + "/");
+	return replace(path, "../dlls/", "dist/" + mode + "/");
 }
 
 std::string& strip(std::string& str, std::string s1)

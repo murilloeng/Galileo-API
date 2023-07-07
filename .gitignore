@@ -11,3 +11,5 @@
 !*.dll
 !*.json
 !.gitignore
+ben/dist/debug/*
+ben/dist/release/*
