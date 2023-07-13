@@ -194,7 +194,7 @@ namespace fea
 			virtual void update(void);
 			virtual void restore(void);
 			virtual void apply_dof(void);
-			virtual void energy_sum(void);
+			virtual void energy_sum(void) const;
 
 			//draw
 			virtual void draw_nodes(void) const;
