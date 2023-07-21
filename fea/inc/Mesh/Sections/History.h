@@ -43,6 +43,7 @@ namespace fea
 				unsigned step(unsigned);
 				unsigned step(void) const;
 				unsigned steps(void) const;
+				const double* bounds(void) const;
 				double bound(unsigned, unsigned) const;
 				const Point& point(unsigned, unsigned) const;
 

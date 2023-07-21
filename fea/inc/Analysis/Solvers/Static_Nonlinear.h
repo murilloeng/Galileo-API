@@ -47,11 +47,11 @@ namespace fea
 				Static_Nonlinear(void);
 
 				//destructor
-				virtual ~Static_Nonlinear(void) override;
+				~Static_Nonlinear(void) override;
 
 				//serialization
-				virtual void load(FILE*) override;
-				virtual void save(FILE*) const override;
+				void load(FILE*) override;
+				void save(FILE*) const override;
 
 			public:
 				//data
@@ -96,35 +96,35 @@ namespace fea
 				strategies::Strategy* strategy(strategies::type);
 
 				//type
-				virtual solvers::type type(void) const override;
+				solvers::type type(void) const override;
 
 				//sets
-				virtual unsigned state_set(void) const override;
-				virtual unsigned force_set(void) const override;
-				virtual unsigned tangent_set(void) const override;
+				unsigned state_set(void) const override;
+				unsigned force_set(void) const override;
+				unsigned tangent_set(void) const override;
 
 			protected:
 				//analysis
-				virtual void prepare(void) override;
+				void prepare(void) override;
 
-				virtual bool solve(void) override;
+				bool solve(void) override;
 
-				virtual bool stop(bool) const override;
+				bool stop(bool) const override;
 
-				virtual void record(void) override;
+				void record(void) override;
 
-				virtual void solve_setup(void);
-				virtual void solve_check(void);
-				virtual bool solve_predictor(void);
-				virtual bool solve_corrector(void);
+				void solve_setup(void);
+				void solve_check(void);
+				bool solve_predictor(void);
+				bool solve_corrector(void);
 
-				virtual void compute_unload(void);
-				virtual bool compute_residue(void);
-				virtual bool compute_predictor(void);
-				virtual bool compute_corrector(void);
-				virtual void compute_reactions(void);
-				virtual bool compute_frequencies(void);
-				virtual void compute_branch_switch(void);
+				void compute_unload(void);
+				bool compute_residue(void);
+				bool compute_predictor(void);
+				bool compute_corrector(void);
+				void compute_reactions(void);
+				bool compute_frequencies(void);
+				void compute_branch_switch(void);
 
 				//data
 				bool m_frequencies;
