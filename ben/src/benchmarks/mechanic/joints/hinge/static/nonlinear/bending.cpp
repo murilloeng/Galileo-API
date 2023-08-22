@@ -2,21 +2,21 @@
 #include <cmath>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Joints/Types.h"
-#include "Mesh/Joints/Hinge.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Joints/Types.h"
+#include "fea/inc/Mesh/Joints/Hinge.h"
 
-#include "Boundary/Boundary.h"
+#include "fea/inc/Boundary/Boundary.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Static_Nonlinear.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Static_Nonlinear.h"
 
 //ben
-#include "benchmarks/mechanic/joints.h"
+#include "ben/inc/benchmarks/mechanic/joints.h"
 
 void tests::joint::hinge::static_nonlinear::bending(void)
 {

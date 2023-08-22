@@ -4,9 +4,9 @@
 #include <functional>
 
 //mat
-#include "linear/matrix.h"
-#include "linear/vector.h"
-#include "solvers/strategies.h"
+#include "mat/inc/linear/matrix.h"
+#include "mat/inc/linear/vector.h"
+#include "mat/inc/solvers/strategies.h"
 
 namespace mat
 {

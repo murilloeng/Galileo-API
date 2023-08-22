@@ -90,9 +90,9 @@ namespace fea
 			virtual void clear_positions(void);
 			virtual void clear_rotations(void);
 
-			//scale
-			virtual void scale_dof(void);
-			virtual void scale_states(void);
+			//bound
+			virtual void bound_dof(void);
+			virtual void bound_states(void);
 
 			//allocate
 			virtual void allocate_dof(void);

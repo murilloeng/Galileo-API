@@ -1,32 +1,32 @@
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Cells/Plane/Plane.h"
-#include "Mesh/Cells/Quadrature/Quadrature.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Cells/Plane/Plane.h"
+#include "fea/inc/Mesh/Cells/Quadrature/Quadrature.h"
 
-#include "Boundary/Boundary.h"
-#include "Boundary/Loads/Types.h"
-#include "Boundary/Loads/Load_Case.h"
-#include "Boundary/Loads/Elements/Mechanic/Plane/Plane_Force.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Boundary/Loads/Types.h"
+#include "fea/inc/Boundary/Loads/Load_Case.h"
+#include "fea/inc/Boundary/Loads/Elements/Mechanic/Plane/Plane_Force.h"
 
-#include "Topology/Topology.h"
-#include "Topology/Points/Point.h"
-#include "Topology/Curves/Curve.h"
-#include "Topology/Curves/Types.h"
-#include "Topology/Surfaces/Surface.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Topology/Points/Point.h"
+#include "fea/inc/Topology/Curves/Curve.h"
+#include "fea/inc/Topology/Curves/Types.h"
+#include "fea/inc/Topology/Surfaces/Surface.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Solver.h"
-#include "Analysis/Solvers/Buckling.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Solver.h"
+#include "fea/inc/Analysis/Solvers/Buckling.h"
 
 //ben
-#include "benchmarks/mechanic/shell.h"
+#include "ben/inc/benchmarks/mechanic/shell.h"
 
 void tests::shell::static_linear::cantilever_I(void)
 {

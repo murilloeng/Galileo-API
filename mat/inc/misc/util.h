@@ -32,6 +32,7 @@ namespace mat
 	double bound(double, double = -1, double = +1);
 
 	double fn(double, unsigned);
+	double dfn(double, unsigned);
 	double funt(double, unsigned);
 	double cost(double, unsigned);
 	double sint(double, unsigned);

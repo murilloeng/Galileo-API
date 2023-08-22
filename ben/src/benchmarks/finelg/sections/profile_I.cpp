@@ -2,22 +2,22 @@
 #include <cstdio>
 
 //mat
-#include "linear/vec3.h"
-#include "geometry/Line.h"
+#include "mat/inc/linear/vec3.h"
+#include "mat/inc/geometry/Line.h"
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Sections/Mesh.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Sections/Profile_I.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Sections/Mesh.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Sections/Profile_I.h"
 
-#include "Topology/Topology.h"
-#include "Topology/Points/Point.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Topology/Points/Point.h"
 
 //ben
-#include "benchmarks/finelg/finelg.h"
+#include "ben/inc/benchmarks/finelg/finelg.h"
 
 void tests::finelg::sections::profile_I(void)
 {

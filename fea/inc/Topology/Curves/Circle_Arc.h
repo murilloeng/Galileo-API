@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Topology/Curves/Curve.h"
+#include "fea/inc/Topology/Curves/Curve.h"
 
 namespace fea
 {

@@ -2,36 +2,33 @@
 #include <cmath>
 #include <ctime>
 
-//mat
-#include "linear/vec3.h"
-
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Nodes/Node.h"
-#include "Mesh/Cells/Cell.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Joints/Types.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Joints/Revolute.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Elements/Mechanic/Mechanic.h"
-#include "Mesh/Cells/Quadrature/Quadrature.h"
-#include "Mesh/Elements/Mechanic/Frame/Beam.h"
-#include "Mesh/Elements/Mechanic/Frame/Beam3.h"
-#include "Mesh/Elements/Mechanic/Frame/Warping.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Nodes/Node.h"
+#include "fea/inc/Mesh/Cells/Cell.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Joints/Types.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Joints/Revolute.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Cells/Quadrature/Quadrature.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam3.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Warping.h"
 
-#include "Boundary/Boundary.h"
+#include "fea/inc/Boundary/Boundary.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Drift.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Drift.h"
 
 //ben
-#include "benchmarks/solvers/solvers.h"
+#include "ben/inc/benchmarks/solvers/solvers.h"
 
 //buckling
 void tests::solvers::drift::single(void)
@@ -40,12 +37,17 @@ void tests::solvers::drift::single(void)
 	fea::models::Model model("single", "benchmarks/solvers/drift");
 
 	//nodes
-	mat::vec3 v;
+	double v[3];
 	const unsigned n = 2;
 	srand(time(nullptr));
 	for(unsigned i = 0; i < n; i++)
 	{
-		model.mesh()->add_node(v.randu().mem());
+		v[2] = 0;
+		for(unsigned j = 0; j < 2; j++)
+		{
+			v[j] = (double) rand() / RAND_MAX;
+		}
+		model.mesh()->add_node(v);
 	}
 
 	//cells
@@ -58,7 +60,7 @@ void tests::solvers::drift::single(void)
 	model.mesh()->add_material(fea::mesh::materials::type::steel);
 
 	//elements
-	model.mesh()->add_element(fea::mesh::elements::type::beam3C, {0, 1});
+	model.mesh()->add_element(fea::mesh::elements::type::beam2T, {0, 1});
 
 	//setup
 	fea::mesh::elements::Beam::shear(false);

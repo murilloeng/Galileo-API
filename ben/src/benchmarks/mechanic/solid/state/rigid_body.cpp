@@ -2,25 +2,25 @@
 #include <cmath>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
 
-#include "Boundary/Boundary.h"
-#include "Boundary/Loads/Types.h"
-#include "Boundary/Loads/Load_Case.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Boundary/Loads/Types.h"
+#include "fea/inc/Boundary/Loads/Load_Case.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/State.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/State.h"
 
 //ben
-#include "benchmarks/mechanic/solid.h"
+#include "ben/inc/benchmarks/mechanic/solid.h"
 
 void tests::solid::state::rigid_body(void)
 {

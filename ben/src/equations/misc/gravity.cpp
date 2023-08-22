@@ -3,11 +3,11 @@
 #include <string>
 
 //mat
-#include "linear/dense.h"
-#include "linear/linear.h"
+#include "mat/inc/linear/dense.h"
+#include "mat/inc/linear/linear.h"
 
 //ben
-#include "equations/misc/gravity.h"
+#include "ben/inc/equations/misc/gravity.h"
 
 #define M_G 6.67408e-11
 #define K(i, j, n) K[3 * n * j + i]

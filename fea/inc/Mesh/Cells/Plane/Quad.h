@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Cells/Plane/Plane.h"
+#include "fea/inc/Mesh/Cells/Plane/Plane.h"
 
 namespace fea
 {

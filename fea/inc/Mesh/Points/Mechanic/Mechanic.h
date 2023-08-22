@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Points/Point.h"
+#include "fea/inc/Mesh/Points/Point.h"
 
 namespace fea
 {

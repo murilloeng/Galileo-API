@@ -4,7 +4,7 @@
 #include <initializer_list>
 
 //mat
-#include "linear/span.h"
+#include "mat/inc/linear/span.h"
 
 #define MAT_STATIC_SIZE 324
 
@@ -24,8 +24,6 @@ namespace mat
 {
 	class matrix
 	{
-		friend class span;
-
 	public:
 		//constructors
 		matrix(void);
@@ -139,5 +137,8 @@ namespace mat
 		unsigned m_cols;
 		const double* m_ref;
 		double m_mem[MAT_STATIC_SIZE];
+
+		//friends
+		friend class span;
 	};
 }

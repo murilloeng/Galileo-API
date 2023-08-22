@@ -24,7 +24,7 @@ namespace fea
 				warping_profile			= 1 << 0,
 				warping_stress_12		= 1 << 1,
 				warping_stress_13		= 1 << 2,
-				warping_shear_norm		= 1 << 3,
+				warping_stress_norm		= 1 << 3,
 				resultant_stress_11		= 1 << 4,
 				resultant_stress_12		= 1 << 5,
 				resultant_stress_13		= 1 << 6,

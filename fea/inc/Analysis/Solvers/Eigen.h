@@ -1,8 +1,8 @@
 #pragma once
 
 //fea
-#include "Analysis/Solvers/Solver.h"
-#include "Analysis/Solvers/Spectre.h"
+#include "fea/inc/Analysis/Solvers/Solver.h"
+#include "fea/inc/Analysis/Solvers/Spectre.h"
 
 namespace fea
 {

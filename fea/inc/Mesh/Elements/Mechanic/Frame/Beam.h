@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Elements/Mechanic/Frame/Frame.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Frame.h"
 
 namespace fea
 {

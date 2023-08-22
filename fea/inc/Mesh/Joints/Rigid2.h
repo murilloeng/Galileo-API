@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Joints/Joint.h"
+#include "fea/inc/Mesh/Joints/Joint.h"
 
 namespace fea
 {

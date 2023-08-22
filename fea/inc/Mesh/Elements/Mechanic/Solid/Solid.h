@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mesh/Elements/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Mechanic.h"
 
 namespace fea
 {

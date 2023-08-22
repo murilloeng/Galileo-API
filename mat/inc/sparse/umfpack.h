@@ -1,5 +1,5 @@
 //mat
-#include "sparse/solver.h"
+#include "mat/inc/sparse/solver.h"
 
 namespace mat
 {

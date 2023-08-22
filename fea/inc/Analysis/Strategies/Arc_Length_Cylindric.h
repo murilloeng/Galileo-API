@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Analysis/Strategies/Strategy.h"
+#include "fea/inc/Analysis/Strategies/Strategy.h"
 
 namespace fea
 {

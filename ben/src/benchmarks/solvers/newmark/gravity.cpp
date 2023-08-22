@@ -3,11 +3,11 @@
 #include <cstring>
 
 //mat
-#include "linear/dense.h"
-#include "solvers/newmark.h"
+#include "mat/inc/linear/dense.h"
+#include "mat/inc/solvers/newmark.h"
 
 //ben
-#include "benchmarks/solvers/solvers.h"
+#include "ben/inc/benchmarks/solvers/solvers.h"
 
 //data (sun x earth)
 //const static double G = 6.674e-11;

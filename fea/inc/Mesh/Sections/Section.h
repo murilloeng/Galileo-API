@@ -5,8 +5,8 @@
 #include <cstdio>
 
 //fea
-#include "Mesh/Sections/Rebar.h"
-#include "Mesh/Cells/Plane/Tri6.h"
+#include "fea/inc/Mesh/Sections/Rebar.h"
+#include "fea/inc/Mesh/Cells/Plane/Tri6.h"
 
 namespace fea
 {

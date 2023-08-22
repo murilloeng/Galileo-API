@@ -2,25 +2,25 @@
 #include <cmath>
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Boundary/Boundary.h"
-#include "Analysis/Analysis.h"
-#include "Boundary/Time/Time.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Boundary/Time/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/State.h"
-#include "Boundary/Time/Polynomial.h"
-#include "Boundary/Supports/Support.h"
-#include "Mesh/Elements/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Boundary/Time/Time.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Boundary/Time/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/State.h"
+#include "fea/inc/Boundary/Time/Polynomial.h"
+#include "fea/inc/Boundary/Supports/Support.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Mechanic.h"
 
 //ben
-#include "benchmarks/mechanic/beam.h"
+#include "ben/inc/benchmarks/mechanic/beam.h"
 
 //state
 void tests::beam::state::axial(void)

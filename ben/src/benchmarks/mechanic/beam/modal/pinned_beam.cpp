@@ -2,29 +2,29 @@
 #include <cmath>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Sections/Section.h"
-#include "Mesh/Materials/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Sections/Section.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Mechanic.h"
 
-#include "Topology/Topology.h"
-#include "Topology/Curves/Types.h"
-#include "Topology/Curves/Curve.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Topology/Curves/Types.h"
+#include "fea/inc/Topology/Curves/Curve.h"
 
-#include "Boundary/Boundary.h"
+#include "fea/inc/Boundary/Boundary.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Modal.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Modal.h"
 
 //ben
-#include "benchmarks/mechanic/beam.h"
+#include "ben/inc/benchmarks/mechanic/beam.h"
 
 //state
 void tests::beam::modal::pinned_beam(void)

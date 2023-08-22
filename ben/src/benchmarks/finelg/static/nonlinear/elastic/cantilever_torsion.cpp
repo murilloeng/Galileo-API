@@ -2,37 +2,37 @@
 #include <cmath>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Nodes/Node.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Joints/Types.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Cells/Line/Line.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Sections/Rectangle.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
-#include "Mesh/Elements/Mechanic/Mechanic.h"
-#include "Mesh/Cells/Quadrature/Quadrature.h"
-#include "Mesh/Elements/Mechanic/Frame/Beam3.h"
-#include "Mesh/Elements/Mechanic/Frame/Warping.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Nodes/Node.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Joints/Types.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Cells/Line/Line.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Sections/Rectangle.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Cells/Quadrature/Quadrature.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam3.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Warping.h"
 
-#include "Topology/Topology.h"
-#include "Topology/Curves/Curve.h"
-#include "Topology/Curves/Types.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Topology/Curves/Curve.h"
+#include "fea/inc/Topology/Curves/Types.h"
 
-#include "Boundary/Boundary.h"
+#include "fea/inc/Boundary/Boundary.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Strategies/Types.h"
-#include "Analysis/Solvers/Static_Nonlinear.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Strategies/Types.h"
+#include "fea/inc/Analysis/Solvers/Static_Nonlinear.h"
 
 //ben
-#include "benchmarks/finelg/finelg.h"
+#include "ben/inc/benchmarks/finelg/finelg.h"
 
 void tests::finelg::static_nonlinear::elastic::cantilever_torsion(void)
 {

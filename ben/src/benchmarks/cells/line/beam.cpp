@@ -4,20 +4,20 @@
 #include <filesystem>
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Cells/Line/Beam.h"
-#include "Mesh/Sections/Section.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
-#include "Mesh/Elements/Mechanic/Frame/Beam3.h"
-#include "Mesh/Elements/Mechanic/Frame/Warping.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Cells/Line/Beam.h"
+#include "fea/inc/Mesh/Sections/Section.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam3.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Warping.h"
 
 //ben
-#include "benchmarks/cells/cells.h"
+#include "ben/inc/benchmarks/cells/cells.h"
 
 void tests::cells::line::beam(void)
 {

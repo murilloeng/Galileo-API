@@ -2,15 +2,15 @@
 #include <cstdio>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Sections/Mesh.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Sections/Rectangle.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Sections/Mesh.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Sections/Rectangle.h"
 
 //ben
-#include "benchmarks/finelg/finelg.h"
+#include "ben/inc/benchmarks/finelg/finelg.h"
 
 void tests::finelg::sections::rectangle(void)
 {

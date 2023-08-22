@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Analysis/Solvers/Nonlinear.h"
+#include "fea/inc/Analysis/Solvers/Nonlinear.h"
 
 namespace fea
 {

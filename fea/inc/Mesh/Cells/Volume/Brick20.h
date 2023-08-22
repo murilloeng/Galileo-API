@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Cells/Volume/Brick.h"
+#include "fea/inc/Mesh/Cells/Volume/Brick.h"
 
 namespace fea
 {

@@ -2,19 +2,19 @@
 #include <cmath>
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Boundary/Boundary.h"
-#include "Analysis/Analysis.h"
-#include "Boundary/Time/Time.h"
-#include "Boundary/Time/Types.h"
-#include "Analysis/Solvers/Types.h"
-#include "Boundary/Time/Sine_Wave.h"
-#include "Boundary/Dependencies/Dependency.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Boundary/Time/Time.h"
+#include "fea/inc/Boundary/Time/Types.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Boundary/Time/Sine_Wave.h"
+#include "fea/inc/Boundary/Dependencies/Dependency.h"
 
 //ben
-#include "benchmarks/dof/dof.h"
+#include "ben/inc/benchmarks/dof/dof.h"
 
 void tests::dof::dependencies(void)
 {

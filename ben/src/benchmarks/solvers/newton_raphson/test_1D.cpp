@@ -2,10 +2,10 @@
 #include <cmath>
 
 //mat
-#include "solvers/newton_raphson.h"
+#include "mat/inc/solvers/newton_raphson.h"
 
 //ben
-#include "benchmarks/solvers/solvers.h"
+#include "ben/inc/benchmarks/solvers/solvers.h"
 
 static void fun_update(void)
 {

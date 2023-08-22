@@ -4,36 +4,36 @@
 #include <cstring>
 
 //mat
-#include "misc/util.h"
-#include "linear/dense.h"
+#include "mat/inc/misc/util.h"
+#include "mat/inc/linear/dense.h"
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Joints/Types.h"
-#include "Mesh/Joints/Hinge.h"
-#include "Mesh/Sections/Box.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Cells/Line/Line.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
-#include "Mesh/Elements/Mechanic/Mechanic.h"
-#include "Mesh/Elements/Mechanic/Frame/Beam3.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Joints/Types.h"
+#include "fea/inc/Mesh/Joints/Hinge.h"
+#include "fea/inc/Mesh/Sections/Box.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Cells/Line/Line.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam3.h"
 
-#include "Boundary/Boundary.h"
-#include "Boundary/Loads/Load_Case.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Boundary/Loads/Load_Case.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Strategies/Types.h"
-#include "Analysis/Solvers/Static_Nonlinear.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Strategies/Types.h"
+#include "fea/inc/Analysis/Solvers/Static_Nonlinear.h"
 
 //ben
-#include "benchmarks/mechanic/deployable.h"
+#include "ben/inc/benchmarks/mechanic/deployable.h"
 
 //controls
 const static int hinge = 1;

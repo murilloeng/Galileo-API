@@ -2,29 +2,29 @@
 // #include <ctime>
 
 // //mat
-// #include "misc/util.h"
-// #include "misc/stress.h"
-// #include "linear/vector.h"
+// #include "mat/inc/misc/util.h"
+// #include "mat/inc/misc/stress.h"
+// #include "mat/inc/linear/vector.h"
 
 // //fea
-// #include "Model/Model.h"
+// #include "fea/inc/Model/Model.h"
 
-// #include "Mesh/Mesh.h"
-// #include "Mesh/Cells/Types.h"
-// #include "Mesh/Sections/Mesh.h"
-// #include "Mesh/Sections/Fiber.h"
-// #include "Mesh/Sections/Types.h"
-// #include "Mesh/Elements/Types.h"
-// #include "Mesh/Cells/Line/Beam.h"
-// #include "Mesh/Materials/Types.h"
-// #include "Mesh/Sections/Rectangle.h"
-// #include "Mesh/Elements/Mechanic/Mechanic.h"
-// #include "Mesh/Elements/Mechanic/Frame/Beam3C.h"
-// #include "Mesh/Elements/Mechanic/Frame/Warping.h"
-// #include "Mesh/Materials/Mechanic/Steel.h"
+// #include "fea/inc/Mesh/Mesh.h"
+// #include "fea/inc/Mesh/Cells/Types.h"
+// #include "fea/inc/Mesh/Sections/Mesh.h"
+// #include "fea/inc/Mesh/Sections/Fiber.h"
+// #include "fea/inc/Mesh/Sections/Types.h"
+// #include "fea/inc/Mesh/Elements/Types.h"
+// #include "fea/inc/Mesh/Cells/Line/Beam.h"
+// #include "fea/inc/Mesh/Materials/Types.h"
+// #include "fea/inc/Mesh/Sections/Rectangle.h"
+// #include "fea/inc/Mesh/Elements/Mechanic/Mechanic.h"
+// #include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam3C.h"
+// #include "fea/inc/Mesh/Elements/Mechanic/Frame/Warping.h"
+// #include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
 
 // //ben
-// #include "equations/elements/beam3C.h"
+// #include "ben/inc/equations/elements/beam3C.h"
 
 // //data
 // static mat::vector fl;

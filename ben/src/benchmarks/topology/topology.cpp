@@ -2,23 +2,23 @@
 #include <cmath>
 
 //mat
-#include "linear/vec3.h"
+#include "mat/inc/linear/vec3.h"
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Cells/Types.h"
-#include "Topology/Topology.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Topology/Points/Point.h"
-#include "Topology/Curves/Curve.h"
-#include "Topology/Curves/Types.h"
-#include "Mesh/Cells/Plane/Plane.h"
-#include "Topology/Surfaces/Surface.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Topology/Points/Point.h"
+#include "fea/inc/Topology/Curves/Curve.h"
+#include "fea/inc/Topology/Curves/Types.h"
+#include "fea/inc/Mesh/Cells/Plane/Plane.h"
+#include "fea/inc/Topology/Surfaces/Surface.h"
 
 //ben
-#include "benchmarks/topology/topology.h"
+#include "ben/inc/benchmarks/topology/topology.h"
 
 void tests::topology::topology(void)
 {

@@ -2,27 +2,27 @@
 #include <cmath>
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Boundary/Boundary.h"
-#include "Analysis/Analysis.h"
-#include "Topology/Topology.h"
-#include "Boundary/Time/Time.h"
-#include "Mesh/Elements/Types.h"
-#include "Boundary/Time/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Topology/Curves/Types.h"
-#include "Topology/Curves/Curve.h"
-#include "Analysis/Solvers/Types.h"
-#include "Mesh/Cells/Plane/Plane.h"
-#include "Boundary/Time/Polynomial.h"
-#include "Topology/Surfaces/Surface.h"
-#include "Analysis/Solvers/Static_Linear.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Boundary/Time/Time.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Boundary/Time/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Topology/Curves/Types.h"
+#include "fea/inc/Topology/Curves/Curve.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Mesh/Cells/Plane/Plane.h"
+#include "fea/inc/Boundary/Time/Polynomial.h"
+#include "fea/inc/Topology/Surfaces/Surface.h"
+#include "fea/inc/Analysis/Solvers/Static_Linear.h"
 
 //ben
-#include "benchmarks/heat/heat.h"
+#include "ben/inc/benchmarks/heat/heat.h"
 
 void tests::heat::static_linear::plate(void)
 {

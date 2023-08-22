@@ -2,10 +2,10 @@
 #include <cmath>
 
 //mat
-#include "solvers/newmark.h"
+#include "mat/inc/solvers/newmark.h"
 
 //ben
-#include "benchmarks/solvers/solvers.h"
+#include "ben/inc/benchmarks/solvers/solvers.h"
 
 //data
 const static int n = 5;
