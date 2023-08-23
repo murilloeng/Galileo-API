@@ -5,7 +5,7 @@
 #include <cstring>
 
 //ben
-#include "equations/misc/electromag.h"
+#include "ben/inc/equations/misc/electromag.h"
 
 static unsigned step = 0;
 static char formatter[200];

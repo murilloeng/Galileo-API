@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Elements/Mechanic/Frame/Beam2.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam2.h"
 
 namespace fea
 {
@@ -31,30 +31,36 @@ namespace fea
 				Beam2T(void);
 
 				//destructor
-				virtual ~Beam2T(void) override;
+				~Beam2T(void) override;
 
 			public:
 				//types
-				virtual elements::type type(void) const override;
+				elements::type type(void) const override;
 
 			protected:
+				//local
+				void local_elastic(void);
+				void local_plastic(void);
+				void strain_hessian(double*) const;
+				void strain_gradient(double*) const;
+
 				//analysis
-				virtual void apply(void) override;
-				virtual void record(void) override;
-				virtual void prepare(void) override;
+				void apply(void) override;
+				void record(void) override;
+				void prepare(void) override;
 
 				//formulation
-				virtual double kinetic_energy(void) const override;
-				virtual double internal_energy(void) const override;
+				double kinetic_energy(void) const override;
+				double internal_energy(void) const override;
 
-				virtual double* internal_force(double*) const override;
+				double* internal_force(double*) const override;
 
-				virtual double* inertia(double*) const override;
-				virtual double* damping(double*) const override;
-				virtual double* stiffness(double*) const override;
+				double* inertia(double*) const override;
+				double* damping(double*) const override;
+				double* stiffness(double*) const override;
 
 				//data
-				double m_es[3], m_fs[3], m_ks[9];
+				double m_l0, m_a0, m_es[3], m_fs[3], m_ks[9];
 			};
 		}
 	}

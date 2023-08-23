@@ -2,32 +2,32 @@
 #include <cmath>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Sections/Profile.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
-#include "Mesh/Cells/Quadrature/Quadrature.h"
-#include "Mesh/Elements/Mechanic/Frame/Beam3.h"
-#include "Mesh/Elements/Mechanic/Frame/Warping.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Sections/Profile.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Cells/Quadrature/Quadrature.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Beam3.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Frame/Warping.h"
 
-#include "Boundary/Boundary.h"
+#include "fea/inc/Boundary/Boundary.h"
 
-#include "Topology/Topology.h"
-#include "Topology/Curves/Types.h"
-#include "Topology/Curves/Curve.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Topology/Curves/Types.h"
+#include "fea/inc/Topology/Curves/Curve.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Buckling.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Buckling.h"
 
 //ben
-#include "benchmarks/mechanic/beam.h"
+#include "ben/inc/benchmarks/mechanic/beam.h"
 
 void tests::beam::buckling::pinned_C(void)
 {

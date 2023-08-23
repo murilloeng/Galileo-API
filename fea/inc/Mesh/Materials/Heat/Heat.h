@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Materials/Material.h"
+#include "fea/inc/Mesh/Materials/Material.h"
 
 namespace fea
 {

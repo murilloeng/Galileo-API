@@ -1,9 +1,9 @@
 #pragma once
 
 //fea
-#include "Analysis/Solvers/Solver.h"
-#include "Analysis/Solvers/Euller.h"
-#include "Analysis/Solvers/Newmark.h"
+#include "fea/inc/Analysis/Solvers/Solver.h"
+#include "fea/inc/Analysis/Solvers/Euller.h"
+#include "fea/inc/Analysis/Solvers/Newmark.h"
 
 namespace fea
 {

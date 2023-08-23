@@ -3,7 +3,7 @@
 #include <string>
 
 //ben
-#include "equations/misc/projectile.h"
+#include "ben/inc/equations/misc/projectile.h"
 
 void equations::projectile::trajectory(void)
 {

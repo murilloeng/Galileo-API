@@ -14,7 +14,7 @@ Author: Murillo Vinicius Bento Santana
 
 The MSVC C++ compiler is used for the build. Be sure to have it [installed](https://visualstudio.microsoft.com/vs/community/) and [available](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022) in the path. All used external libraries are packed with the code.
 
-Generate an executable (make.exe) that will be used to build the code: `maker\make.bat`
+Generate an executable (make.exe) that will be used to build the code: `win\make.bat`
 
 ### Setup in Unix
 

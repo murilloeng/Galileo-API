@@ -3,18 +3,18 @@
 #include <cstring>
 
 //mat
-#include "linear/vector.h"
+#include "mat/inc/linear/vector.h"
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Sections/Section.h"
-#include "Mesh/Sections/Profile.h"
-#include "Mesh/Sections/Rectangle.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Sections/Section.h"
+#include "fea/inc/Mesh/Sections/Profile.h"
+#include "fea/inc/Mesh/Sections/Rectangle.h"
 
 //ben
-#include "equations/elements/beam3.h"
+#include "ben/inc/equations/elements/beam3.h"
 
 //static
 const static double E = 2.00e+11;

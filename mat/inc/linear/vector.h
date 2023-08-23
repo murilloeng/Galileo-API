@@ -1,7 +1,7 @@
 #pragma once
 
 //mat
-#include "linear/matrix.h"
+#include "mat/inc/linear/matrix.h"
 
 namespace mat
 {

@@ -4,7 +4,7 @@
 #include <vector>
 
 //fea
-#include "Mesh/Sections/Point.h"
+#include "fea/inc/Mesh/Sections/Point.h"
 
 namespace fea
 {

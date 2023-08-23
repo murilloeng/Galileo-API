@@ -4,7 +4,7 @@
 #include <cstring>
 
 //ben
-#include "equations/misc/tent.h"
+#include "ben/inc/equations/misc/tent.h"
 
 //controls
 const static bool load = false;

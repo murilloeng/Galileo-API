@@ -1,10 +1,10 @@
 #pragma once
 
 //mat
-#include "linear/matrix.h"
+#include "mat/inc/linear/matrix.h"
 
 //fea
-#include "Mesh/Cells/Line/Line.h"
+#include "fea/inc/Mesh/Cells/Line/Line.h"
 
 namespace fea
 {

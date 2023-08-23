@@ -1,5 +1,8 @@
 #pragma once
 
+//std
+#include <cstdio>
+
 namespace fea
 {
 	namespace analysis

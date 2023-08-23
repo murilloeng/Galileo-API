@@ -3,21 +3,21 @@
 #include <functional>
 
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
 
-#include "Boundary/Boundary.h"
-#include "Boundary/Time/Types.h"
-#include "Boundary/Time/Sine_Wave.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Boundary/Time/Types.h"
+#include "fea/inc/Boundary/Time/Sine_Wave.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Dynamic_Nonlinear.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Dynamic_Nonlinear.h"
 
 //ben
-#include "benchmarks/dof/dof.h"
+#include "ben/inc/benchmarks/dof/dof.h"
 
 void tests::dof::dynamic_nonlinear(void)
 {

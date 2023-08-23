@@ -4,7 +4,7 @@
 #include <functional>
 
 //fea
-#include "Mesh/Points/Mechanic/Fiber.h"
+#include "fea/inc/Mesh/Points/Mechanic/Fiber.h"
 
 namespace mat
 {

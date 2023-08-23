@@ -3,18 +3,18 @@
 #include <filesystem>
 
 //mat
-#include "misc/util.h"
-#include "misc/stress.h"
+#include "mat/inc/misc/util.h"
+#include "mat/inc/misc/stress.h"
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Points/Mechanic/Mechanic.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Points/Mechanic/Mechanic.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
 
 //ben
-#include "benchmarks/materials/materials.h"
+#include "ben/inc/benchmarks/materials/materials.h"
 
 void tests::materials::von_mises::shear_2D(void)
 {

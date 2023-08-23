@@ -2,16 +2,16 @@
 #include <cmath>
 
 //fea
-#include "Mesh/Mesh.h"
-#include "Model/Model.h"
-#include "Mesh/Sections/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Sections/Rectangle.h"
-#include "Mesh/Sections/Resultant.h"
-#include "Mesh/Materials/Mechanic/Steel.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Model/Model.h"
+#include "fea/inc/Mesh/Sections/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Sections/Rectangle.h"
+#include "fea/inc/Mesh/Sections/Resultant.h"
+#include "fea/inc/Mesh/Materials/Mechanic/Steel.h"
 
 //ben
-#include "benchmarks/sections/sections.h"
+#include "ben/inc/benchmarks/sections/sections.h"
 
 namespace tests
 {

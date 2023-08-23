@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Boundary/Loads/Elements/Element.h"
+#include "fea/inc/Boundary/Loads/Elements/Element.h"
 
 namespace fea
 {

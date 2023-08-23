@@ -1,9 +1,12 @@
+//std
+#include <cstdlib>
+
 //data
-#include "equations/equations.h"
-#include "benchmarks/benchmarks.h"
+#include "ben/inc/equations/equations.h"
+#include "ben/inc/benchmarks/benchmarks.h"
 
 int main(int argc, char* argv[])
 {
 	//return
-	return 0;
+	return EXIT_SUCCESS;
 }

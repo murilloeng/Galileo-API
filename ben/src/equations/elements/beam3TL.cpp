@@ -5,16 +5,16 @@
 #include <cstring>
 
 //mat
-#include "misc/util.h"
-#include "linear/vec3.h"
-#include "linear/quat.h"
-#include "linear/mat3.h"
-#include "linear/dense.h"
-#include "linear/vector.h"
-#include "linear/matrix.h"
+#include "mat/inc/misc/util.h"
+#include "mat/inc/linear/vec3.h"
+#include "mat/inc/linear/quat.h"
+#include "mat/inc/linear/mat3.h"
+#include "mat/inc/linear/dense.h"
+#include "mat/inc/linear/vector.h"
+#include "mat/inc/linear/matrix.h"
 
 //ben
-#include "equations/elements/beam3TL.h"
+#include "ben/inc/equations/elements/beam3TL.h"
 
 //data
 static bool ho = true;

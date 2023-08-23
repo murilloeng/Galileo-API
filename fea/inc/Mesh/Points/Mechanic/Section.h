@@ -4,8 +4,8 @@
 #include <vector>
 
 //fea
-#include "Mesh/Points/Point.h"
-#include "Mesh/Points/Mechanic/Fiber.h"
+#include "fea/inc/Mesh/Points/Point.h"
+#include "fea/inc/Mesh/Points/Mechanic/Fiber.h"
 
 namespace fea
 {

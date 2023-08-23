@@ -3,11 +3,11 @@
 #include <string>
 
 //mat
-#include "linear/dense.h"
-#include "linear/linear.h"
+#include "mat/inc/linear/dense.h"
+#include "mat/inc/linear/linear.h"
 
 //ben
-#include "equations/misc/pendulum.h"
+#include "ben/inc/equations/misc/pendulum.h"
 
 //single 2D
 void equations::pendulum::single_2D::newmark(void)

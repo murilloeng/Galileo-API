@@ -5,8 +5,8 @@
 #include <climits>
 
 //fea
-#include "Analysis/Solvers/Eigen.h"
-#include "Analysis/Solvers/Nonlinear.h"
+#include "fea/inc/Analysis/Solvers/Eigen.h"
+#include "fea/inc/Analysis/Solvers/Nonlinear.h"
 
 namespace fea
 {

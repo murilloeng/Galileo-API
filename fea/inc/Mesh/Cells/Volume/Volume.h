@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Mesh/Cells/Cell.h"
+#include "fea/inc/Mesh/Cells/Cell.h"
 
 namespace fea
 {

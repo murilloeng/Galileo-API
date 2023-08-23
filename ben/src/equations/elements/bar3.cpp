@@ -6,11 +6,11 @@
 #include <cstring>
 
 //mat
-#include "misc/util.h"
-#include "linear/vector.h"
+#include "mat/inc/misc/util.h"
+#include "mat/inc/linear/vector.h"
 
 //ben
-#include "equations/elements/bar3.h"
+#include "ben/inc/equations/elements/bar3.h"
 
 //data
 static bool m_strain = false;

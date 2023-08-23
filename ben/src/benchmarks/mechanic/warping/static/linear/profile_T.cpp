@@ -1,29 +1,29 @@
 //fea
-#include "Model/Model.h"
+#include "fea/inc/Model/Model.h"
 
-#include "Mesh/Mesh.h"
-#include "Mesh/Nodes/Dof.h"
-#include "Mesh/Nodes/Node.h"
-#include "Mesh/Cells/Types.h"
-#include "Mesh/Elements/Types.h"
-#include "Mesh/Materials/Types.h"
-#include "Mesh/Elements/Mechanic/Plane/Warping.h"
+#include "fea/inc/Mesh/Mesh.h"
+#include "fea/inc/Mesh/Nodes/Dof.h"
+#include "fea/inc/Mesh/Nodes/Node.h"
+#include "fea/inc/Mesh/Cells/Types.h"
+#include "fea/inc/Mesh/Elements/Types.h"
+#include "fea/inc/Mesh/Materials/Types.h"
+#include "fea/inc/Mesh/Elements/Mechanic/Plane/Warping.h"
 
-#include "Topology/Topology.h"
-#include "Topology/Curves/Types.h"
-#include "Topology/Surfaces/Surface.h"
+#include "fea/inc/Topology/Topology.h"
+#include "fea/inc/Topology/Curves/Types.h"
+#include "fea/inc/Topology/Surfaces/Surface.h"
 
-#include "Boundary/Boundary.h"
-#include "Boundary/Loads/Types.h"
-#include "Boundary/Loads/Load_Case.h"
-#include "Boundary/Loads/Elements/Element.h"
+#include "fea/inc/Boundary/Boundary.h"
+#include "fea/inc/Boundary/Loads/Types.h"
+#include "fea/inc/Boundary/Loads/Load_Case.h"
+#include "fea/inc/Boundary/Loads/Elements/Element.h"
 
-#include "Analysis/Analysis.h"
-#include "Analysis/Solvers/Types.h"
-#include "Analysis/Solvers/Solver.h"
+#include "fea/inc/Analysis/Analysis.h"
+#include "fea/inc/Analysis/Solvers/Types.h"
+#include "fea/inc/Analysis/Solvers/Solver.h"
 
 //ben
-#include "benchmarks/mechanic/warping.h"
+#include "ben/inc/benchmarks/mechanic/warping.h"
 
 //data
 static const double r = 1.00e-02;

@@ -1,7 +1,7 @@
 #pragma once
 
 //fea
-#include "Analysis/Solvers/Solver.h"
+#include "fea/inc/Analysis/Solvers/Solver.h"
 
 namespace fea
 {

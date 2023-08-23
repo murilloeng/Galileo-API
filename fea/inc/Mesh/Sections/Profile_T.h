@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mesh/Sections/Profile.h"
+#include "fea/inc/Mesh/Sections/Profile.h"
 
 namespace fea
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 //mat
-#include "linear/vector.h"
+#include "mat/inc/linear/vector.h"
 
 namespace mat
 {
@@ -48,9 +48,6 @@ namespace mat
 
 		const double& operator[](unsigned) const;
 		const double& operator()(unsigned) const;
-
-		//misc
-		void print(void) const;
 
 		//linear
 		vec3& normalize(void);
